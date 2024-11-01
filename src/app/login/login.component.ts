@@ -17,4 +17,10 @@ export class LoginComponent {
 
     this.renderer.setAttribute(document.body, "style", "min-height: 464px;")
   }
+
+  onSignButtonClick() {
+    const body = document.body;
+    this.renderer.removeClass(body, 'login-page');
+    this.renderer.setStyle(body, 'min-height', 'auto');
+  }
 }
