@@ -13,7 +13,4 @@ import { RouterModule } from '@angular/router';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-
-  // this.renderer.removeClass(document.body, "min-height: 0;")
-
 }
