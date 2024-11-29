@@ -24,27 +24,27 @@ export class MahasiswaComponent implements AfterViewInit{
   
   bindMahasiswa(): void {
     this.httpClient.get("https://stmikpontianak.cloud/011100862/tampilMahasiswa.php").subscribe((data: any) => {
-        console.log(data);
+      console.log(data);
 
-        this.table1.clear();
+      this.table1.clear();
 
-        data.forEach((element: any) => {
-          var tempatTanggalLahir = element.TempatLahir + ", " + element.TanggalLahir;
+      data.forEach((element: any) => {
+        var tempatTanggalLahir = element.TempatLahir + ", " + element.TanggalLahir;
 
-          var row = [
-            element.NIM,
-            element.Nama,
-            element.JenisKelamin,
-            tempatTanggalLahir,
-            element.JP,
-            element.Alamat,
-            element.StatusNikah,
-            element.TahunMasuk
-          ]
+        var row = [
+          element.NIM,
+          element.Nama,
+          element.JenisKelamin,
+          tempatTanggalLahir,
+          element.JP,
+          element.Alamat,
+          element.StatusNikah,
+          element.TahunMasuk
+        ]
 
-          this.table1.row.add(row);
-        })
+        this.table1.row.add(row);
+      })
       this.table1.draw(false)
-    })
+    });
   }
 }
