@@ -5,11 +5,10 @@ import { HeaderComponent } from "../header/header.component";
 import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [RouterModule, FooterComponent, HeaderComponent, SidebarComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+    selector: 'app-dashboard',
+    imports: [RouterModule, FooterComponent, HeaderComponent, SidebarComponent],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
 
