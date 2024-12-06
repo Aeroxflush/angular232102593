@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Renderer2 } from '@angular/core';
-import { FooterComponent } from "../footer/footer.component";
-import { SidebarComponent } from "../sidebar/sidebar.component";
-import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from '../footer/footer.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { HeaderComponent } from '../header/header.component';
 import { HttpClient } from '@angular/common/http';
 
 declare const $: any;
@@ -11,89 +11,94 @@ declare const $: any;
   standalone: true,
   imports: [FooterComponent, SidebarComponent, HeaderComponent],
   templateUrl: './mahasiswa.component.html',
-  styleUrl: './mahasiswa.component.css'
+  styleUrl: './mahasiswa.component.css',
 })
-export class MahasiswaComponent implements AfterViewInit{
+export class MahasiswaComponent implements AfterViewInit {
   data: any;
   table1: any;
 
   constructor(private httpClient: HttpClient, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
-    this.renderer.removeClass(document.body, "sidebar-open");
-    this.renderer.addClass(document.body, "sidebar-closed");
-    this.renderer.addClass(document.body, "sidebar-collapse");
-    
-    this.table1 = $("#table1").DataTable();
+    this.renderer.removeClass(document.body, 'sidebar-open');
+    this.renderer.addClass(document.body, 'sidebar-closed');
+    this.renderer.addClass(document.body, 'sidebar-collapse');
+
+    this.table1 = $('#table1').DataTable();
     this.bindMahasiswa();
   }
-  
+
   bindMahasiswa(): void {
-    this.httpClient.get("https://stmikpontianak.cloud/011100862/tampilMahasiswa.php").subscribe((data: any) => {
-      console.table(data);
+    this.httpClient
+      .get('https://stmikpontianak.cloud/011100862/tampilMahasiswa.php')
+      .subscribe((data: any) => {
+        console.log(data);
 
-      this.table1.clear();
+        this.table1.clear();
 
-      data.forEach((element: any) => {
-        var tempatTanggalLahir = element.TempatLahir + ", " + element.TanggalLahir;
+        data.forEach((element: any) => {
+          var tempatTanggalLahir =
+            element.TempatLahir + ', ' + element.TanggalLahir;
 
-        var row = [
-          element.NIM,
-          element.Nama,
-          element.JenisKelamin,
-          tempatTanggalLahir,
-          element.JP,
-          element.Alamat,
-          element.StatusNikah,
-          element.TahunMasuk
-        ]
+          var row = [
+            element.NIM,
+            element.Nama,
+            element.JenisKelamin,
+            tempatTanggalLahir,
+            element.JP,
+            element.Alamat,
+            element.StatusNikah,
+            element.TahunMasuk,
+          ];
 
-        this.table1.row.add(row);
-      })
-      this.table1.draw(false)
-    });
+          this.table1.row.add(row);
+        });
+        this.table1.draw(false);
+      });
   }
+
   showTambahModal(): void {
-    $("#TambahModal").modal();
+    $('#tambahModal').modal();
   }
+
   postRecord(): void {
-    var alamat = $("#alamat").val();
-    var jenisKelamin = $("#jeniskelaminSelect").val();
-    var jp = $("#jpSelect").val();
-    var nama = $("#namaText").val();
-    var nim = $("#nimText").val();
-    var statusNikah = $("#statusNikahSelect").val();
-    var tahunMasuk = $("#tahunMasukText"). val();
-    var tanggalLahir = $("#tanggalLahirText"). val();
-    var tempatLahir = $("#tempatLahirText"). val();
+    var alamat = $('#alamat').val();
+    var jenisKelamin = $('#jeniskelaminSelect').val();
+    var jp = $('#jpSelect').val();
+    var nama = $('#namaText').val();
+    var nim = $('#nimText').val();
+    var statusNikah = $('#statusNikahSelect').val();
+    var tahunMasuk = $('#tahunMasukText').val();
+    var tanggalLahir = $('#tanggalLahirText').val();
+    var tempatLahir = $('#tempatLahirText').val();
 
     if (nim.length == 0) {
-      alert("NIM belum diisi!");
+      alert('NIM belum diisi!');
       return;
     }
 
     if (nama.length == 0) {
-      alert("Nama belum diisi!");
+      alert('Nama belum diisi!');
       return;
     }
 
     if (tempatLahir.length == 0) {
-      alert("Tempat lahir belum diisi!");
+      alert('Tempat lahir belum diisi!');
       return;
     }
 
     if (tanggalLahir.length == 0) {
-      alert("Tanggal lahir belum diisi!");
+      alert('Tanggal lahir belum diisi!');
       return;
     }
 
     if (alamat.length == 0) {
-      alert("Alamat belum diisi!");
+      alert('Alamat belum diisi!');
       return;
     }
 
     if (tahunMasuk.length == 0) {
-      alert("Tahun masuk belum diisi!");
+      alert('Tahun masuk belum diisi!');
       return;
     }
 
@@ -107,10 +112,33 @@ export class MahasiswaComponent implements AfterViewInit{
     tanggalLahir = encodeURIComponent(tanggalLahir);
     tempatLahir = encodeURIComponent(tempatLahir);
 
-    var url = "https://stmikpontianak.cloud/011100862/tampilMahasiswa.php" + 
-    "?alamat=" + alamat +
-    "&jenisKelamin=" + jenisKelamin +
-    "&jp=" + jp +
-    "&nama=" + nama +
+    var url =
+      'https://stmikpontianak.cloud/011100862/tambahMahasiswa.php' +
+      '?alamat=' +
+      alamat +
+      '&jenisKelamin=' +
+      jenisKelamin +
+      '&jp=' +
+      jp +
+      '&nama=' +
+      nama +
+      '&nim=' +
+      nim +
+      '&statusPernikahan=' +
+      statusNikah +
+      '&tahunMasuk=' +
+      tahunMasuk +
+      '&tanggalLahir=' +
+      tanggalLahir +
+      '&tempatLahir=' +
+      tempatLahir;
+
+    this.httpClient.get(url).subscribe((data: any) => {
+      console.log(data);
+      alert(data.status + ' --> ' + this.data.message);
+
+      this.bindMahasiswa();
+      $('#tambahModal').modal('hide');
+    });
   }
 }
