@@ -16,6 +16,6 @@ export class SidebarComponent implements OnInit {
     constructor(private cookieService: CookieService, private router: Router){}
 
     ngOnInit(): void {
-        this.username = this.cookieService.get("UserId");
+        this.username = this.cookieService.get("userId");
     }
 }
