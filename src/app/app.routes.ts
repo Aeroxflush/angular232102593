@@ -7,6 +7,7 @@ import { Dashboard2Component } from './dashboard2/dashboard2.component';
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { MahasiswaComponent } from './mahasiswa/mahasiswa.component';
 import { otentikasiGuard } from './otentikasi.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -32,6 +33,7 @@ export const routes: Routes = [
     component: MahasiswaComponent,
     canActivate: [otentikasiGuard],
   },
+  {path: 'logout', component: LogoutComponent,}
 ];
 
 @NgModule({
