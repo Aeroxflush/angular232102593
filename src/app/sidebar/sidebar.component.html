@@ -145,7 +145,18 @@
             <p>&nbsp;Cuaca</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/logout']"
+            routerLinkActive="router-link-active"
+            class="nav-link"
+          >
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>&nbsp;Logout</p>
+          </a>
+        </li>
         <li class="nav-header border-top mt-3 pt-3 mx-3"></li>
+
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
@@ -746,16 +757,6 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fa-circle text-info"></i>
             <p>Informational</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            [routerLink]="['/logout']"
-            routerLinkActive="router-link-active"
-            class="nav-link"
-          >
-            <i class="nav-icon far fa-circle"></i>
-            <p>logout</p>
           </a>
         </li>
       </ul>
