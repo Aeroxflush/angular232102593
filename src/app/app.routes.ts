@@ -9,6 +9,7 @@ import { MahasiswaComponent } from './mahasiswa/mahasiswa.component';
 import { otentikasiGuard } from './otentikasi.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { ForexComponent } from './forex/forex.component';
+import { CuacaComponent } from './cuaca/cuaca.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -29,13 +30,14 @@ export const routes: Routes = [
     canActivate: [otentikasiGuard],
   },
   {path: 'forex', component: ForexComponent, canActivate: [otentikasiGuard], },
+  {path: 'cuaca', component: CuacaComponent, canActivate: [otentikasiGuard], },
   { path: 'login', component: LoginComponent },
   {
     path: 'mahasiswa',
     component: MahasiswaComponent,
     canActivate: [otentikasiGuard],
   },
-  {path: 'logout', component: LogoutComponent,}
+  {path: 'logout', component: LogoutComponent},
 ];
 
 @NgModule({
