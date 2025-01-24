@@ -40,10 +40,17 @@ export class MahasiswaComponent implements AfterViewInit {
           var tempatTanggalLahir =
             element.TempatLahir + ', ' + element.TanggalLahir;
 
+          const jenisKelaminFormatted = element.JenisKelamin + " " + (
+              (element.JenisKelamin == "Perempuan" || element.JenisKelamin == "perempuan") ?
+              "<i class ='fas fa-venus text-danger'></i>" :
+              (element.JenisKelamin != "undefined") ?
+              "<i class ='fas fa-mars text-primary'></i>" : ""
+            );
+
           var row = [
             element.NIM,
             element.Nama,
-            element.JenisKelamin,
+            jenisKelaminFormatted,
             tempatTanggalLahir,
             element.JP,
             element.Alamat,
